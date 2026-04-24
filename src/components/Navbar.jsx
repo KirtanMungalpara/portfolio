@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useSpring, useMotionValue } from 'framer-motion'
-import { Moon, Sun, Menu, X, Download } from 'lucide-react'
+import { Moon, Sun, Menu, X, Download, Volume2, VolumeX } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
+import { useSound } from '../context/SoundContext'
 import { NAV_LINKS } from '../data'
 
 export default function Navbar() {
   const { isDark, toggle } = useTheme()
+  const { isSoundEnabled, toggleSound, playClick, playHover } = useSound()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
@@ -33,6 +35,7 @@ export default function Navbar() {
 
   const handleNavClick = (e, href) => {
     e.preventDefault()
+    playClick()
     setMenuOpen(false)
     const target = document.querySelector(href)
     if (target) target.scrollIntoView({ behavior: 'smooth' })
@@ -78,6 +81,7 @@ export default function Navbar() {
           <motion.a
             href="#"
             onClick={e => handleNavClick(e, '#')}
+            onMouseEnter={playHover}
             className="font-display font-bold text-xl relative"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
@@ -101,6 +105,7 @@ export default function Navbar() {
                   key={href}
                   href={href}
                   onClick={e => handleNavClick(e, href)}
+                  onMouseEnter={playHover}
                   initial={{ opacity: 0, y: -12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.08 * i + 0.3 }}
@@ -128,9 +133,42 @@ export default function Navbar() {
           {/* Right controls */}
           <div className="flex items-center gap-3">
 
+            {/* Sound Toggle — 3D rotation */}
+            <motion.button
+              onClick={() => {
+                toggleSound()
+                if (!isSoundEnabled) playClick()
+              }}
+              whileHover={{ scale: 1.12, rotateY: 20 }}
+              whileTap={{ scale: 0.9 }}
+              className="w-9 h-9 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-all duration-300"
+              style={{
+                background: 'rgba(255,255,255,0.07)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              }}
+              aria-label="Toggle sound"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isSoundEnabled ? 'on' : 'off'}
+                  initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.25, ease: 'backOut' }}
+                >
+                  {isSoundEnabled ? <Volume2 size={16} className="text-accent" /> : <VolumeX size={16} />}
+                </motion.div>
+              </AnimatePresence>
+            </motion.button>
+
             {/* Theme Toggle — 3D rotation */}
             <motion.button
-              onClick={toggle}
+              onClick={() => {
+                toggle()
+                playClick()
+              }}
               whileHover={{ scale: 1.12, rotateY: 20 }}
               whileTap={{ scale: 0.9 }}
               className="w-9 h-9 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-accent dark:hover:text-accent transition-all duration-300"
@@ -159,16 +197,9 @@ export default function Navbar() {
             <motion.a
               href="/resume.pdf"
               download="Kirtan_Mungalpara_Resume.pdf"
-              whileHover={{ scale: 1.06, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full font-display font-semibold text-xs transition-all duration-300 text-accent"
-              style={{
-                border: '1px solid rgba(0,212,170,0.4)',
-                background: 'rgba(0,212,170,0.06)',
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 4px 12px rgba(0,212,170,0.15)',
-              }}
+              onClick={playClick}
               onMouseEnter={e => {
+                playHover()
                 e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,212,170,0.3)'
                 e.currentTarget.style.background = 'rgba(0,212,170,0.12)'
               }}
@@ -188,7 +219,10 @@ export default function Navbar() {
                 background: 'rgba(255,255,255,0.07)',
                 border: '1px solid rgba(255,255,255,0.12)',
               }}
-              onClick={() => setMenuOpen(v => !v)}
+              onClick={() => {
+                setMenuOpen(v => !v)
+                playClick()
+              }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label="Toggle menu"

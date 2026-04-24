@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { ThemeProvider } from './context/ThemeContext'
+import { SoundProvider } from './context/SoundContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -9,6 +10,7 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Preloader from './components/Preloader'
+import HireBadge from './components/HireBadge'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -24,23 +26,26 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <AnimatePresence mode="wait">
-        {loading ? (
-          <Preloader key="preloader" onComplete={() => setLoading(false)} />
-        ) : (
-          <div key="content" className="min-h-screen">
-            <Navbar />
-            <main>
-              <Hero />
-              <About />
-              <Skills />
-              <Projects />
-              <Contact />
-            </main>
-            <Footer />
-          </div>
-        )}
-      </AnimatePresence>
+      <SoundProvider>
+        <AnimatePresence mode="wait">
+          {loading ? (
+            <Preloader key="preloader" onComplete={() => setLoading(false)} />
+          ) : (
+            <div key="content" className="min-h-screen">
+              <Navbar />
+              <HireBadge />
+              <main>
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Contact />
+              </main>
+              <Footer />
+            </div>
+          )}
+        </AnimatePresence>
+      </SoundProvider>
     </ThemeProvider>
   )
 }

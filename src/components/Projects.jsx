@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion'
 import { ExternalLink, Github, ArrowRight, Star } from 'lucide-react'
+import { useSound } from '../context/SoundContext'
 import { PROJECTS, TECH_ICONS } from '../data'
 
 function TechBadge({ tech }) {
@@ -20,6 +21,7 @@ function TechBadge({ tech }) {
 
 /* 3D tilt card using spring physics */
 function ProjectCard({ project, index }) {
+  const { playHover, playClick } = useSound()
   const cardRef = useRef(null)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -51,6 +53,7 @@ function ProjectCard({ project, index }) {
     >
       <motion.article
         ref={cardRef}
+        onMouseEnter={playHover}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
@@ -122,6 +125,8 @@ function ProjectCard({ project, index }) {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={playClick}
+                    onMouseEnter={playHover}
                     whileHover={{ scale: 1.15, y: -2 }}
                     whileTap={{ scale: 0.9 }}
                     className="flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-accent transition-colors rounded-full w-9 h-9"
@@ -181,6 +186,8 @@ function ProjectCard({ project, index }) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={playClick}
+                onMouseEnter={playHover}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 className="flex items-center gap-2 px-4 py-2 text-xs btn-outline"
@@ -192,6 +199,8 @@ function ProjectCard({ project, index }) {
                 href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={playClick}
+                onMouseEnter={playHover}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.97 }}
                 className="flex items-center gap-2 px-4 py-2 text-xs btn-primary"

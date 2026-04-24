@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { SKILLS } from '../data'
-import { useMouseTilt } from '../hooks/useMouseTilt'
+import { useSound } from '../context/SoundContext'
 
 const TECH_STACK = [
   { name: 'HTML5',       emoji: '🌐', desc: 'Semantic markup',     level: 90, color: '#E34F26' },
@@ -72,12 +72,14 @@ function SkillBar({ name, level, icon, delay }) {
 }
 
 function FlipCard({ tech, index }) {
+  const { playHover } = useSound()
   return (
     <motion.div
       initial={{ opacity: 0, y: 30, rotateY: -20 }}
       whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.04 * index, ease: [0.16, 1, 0.3, 1] }}
+      onMouseEnter={playHover}
       className="flip-card h-28 cursor-pointer"
       style={{ perspective: '600px' }}
     >
