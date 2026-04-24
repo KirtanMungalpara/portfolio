@@ -10,17 +10,17 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 relative">
-      <div className="max-w-6xl mx-auto px-6 md:px-12 py-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+    <footer className="relative bg-gray-100 border-t border-gray-200 dark:bg-gray-950 dark:border-gray-800">
+      <div className="max-w-6xl px-6 py-12 mx-auto md:px-12">
+        <div className="grid gap-8 mb-12 md:grid-cols-3">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="font-display font-bold text-2xl">
+            <div className="text-2xl font-bold font-display">
               <span className="gradient-text">KM</span>
               <span className="text-gray-400">.</span>
             </div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 max-w-xs leading-relaxed">
-              Full Stack Developer passionate about building impactful products with clean code and thoughtful design.
+            <p className="max-w-xs text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+              Software Developer passionate about building impactful products with clean code and thoughtful design.
             </p>
             <div className="flex gap-3">
               {[
@@ -36,7 +36,7 @@ export default function Footer() {
                   aria-label={label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-9 h-9 rounded-full glass flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-accent transition-colors"
+                  className="flex items-center justify-center text-gray-500 transition-colors rounded-full w-9 h-9 glass dark:text-gray-400 hover:text-accent"
                 >
                   <Icon size={15} />
                 </motion.a>
@@ -46,14 +46,14 @@ export default function Footer() {
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h4 className="font-display font-semibold text-sm text-gray-900 dark:text-white">Navigation</h4>
+            <h4 className="text-sm font-semibold text-gray-900 font-display dark:text-white">Navigation</h4>
             <ul className="space-y-2">
               {NAV_LINKS.map(({ label, href }) => (
                 <li key={href}>
                   <a
                     href={href}
                     onClick={e => handleNavClick(e, href)}
-                    className="text-sm text-gray-500 dark:text-gray-400 hover:text-accent transition-colors font-mono"
+                    className="font-mono text-sm text-gray-500 transition-colors dark:text-gray-400 hover:text-accent"
                   >
                     {label}
                   </a>
@@ -64,9 +64,9 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="space-y-4">
-            <h4 className="font-display font-semibold text-sm text-gray-900 dark:text-white">Get In Touch</h4>
+            <h4 className="text-sm font-semibold text-gray-900 font-display dark:text-white">Get In Touch</h4>
             <div className="space-y-2">
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-mono">{SOCIAL_LINKS.email}</p>
+              <p className="font-mono text-sm text-gray-500 dark:text-gray-400">{SOCIAL_LINKS.email}</p>
               <p className="text-sm text-gray-500 dark:text-gray-400">Gujarat, India</p>
               <p className="text-xs text-accent">Open to opportunities</p>
             </div>
@@ -74,12 +74,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="flex flex-col items-center justify-between gap-4 pt-8 border-t border-gray-200 dark:border-gray-800 md:flex-row">
           <p className="text-xs text-gray-400 flex items-center gap-1.5">
             Designed & built with
             <Heart size={11} className="text-rose-400 fill-rose-400" />
             by{' '}
-            <span className="text-accent font-medium">Kirtan Mungalpara</span>
+            <span className="font-medium text-accent">Kirtan Mungalpara</span>
             &nbsp;· © {new Date().getFullYear()}
           </p>
 
@@ -94,7 +94,7 @@ export default function Footer() {
         onClick={scrollToTop}
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.9 }}
-        className="absolute bottom-8 right-6 w-10 h-10 rounded-full bg-accent text-gray-900 flex items-center justify-center shadow-lg shadow-accent/30"
+        className="absolute flex items-center justify-center w-10 h-10 text-gray-900 rounded-full shadow-lg bottom-8 right-6 bg-accent shadow-accent/30"
         aria-label="Scroll to top"
       >
         <ArrowUp size={16} />

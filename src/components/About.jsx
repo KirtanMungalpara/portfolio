@@ -70,7 +70,7 @@ export default function About() {
           {/* Left — Bio */}
           <div className="space-y-6">
             <motion.p {...fadeUp(0.1)} className="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-              I'm <span className="font-medium text-accent">Kirtan Mungalpara</span>, a passionate full-stack developer
+              I'm <span className="font-medium text-accent">Kirtan Mungalpara</span>, a passionate Software developer
               from Gujarat, India. As a fresher, I bring fresh perspectives and strong foundational
               knowledge in modern web technologies.
             </motion.p>

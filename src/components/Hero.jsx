@@ -14,7 +14,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden grid-pattern noise-bg">
+    <section className="relative flex flex-col justify-center min-h-screen overflow-hidden grid-pattern noise-bg">
       {/* Background orbs */}
       <div className="orb orb-1 dark:opacity-15 opacity-10" />
       <div className="orb orb-2 dark:opacity-10 opacity-5" />
@@ -43,16 +43,16 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12 pt-24 pb-16 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="w-full max-w-6xl px-6 pt-24 pb-16 mx-auto md:px-12">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left — Text Content */}
           <div className="space-y-6">
             {/* Badge */}
             <motion.div {...fadeUp(0.2)} className="inline-flex">
-              <span className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-xs font-mono text-accent border border-accent/20">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+              <span className="inline-flex items-center gap-2 px-4 py-2 font-mono text-xs border rounded-full glass text-accent border-accent/20">
+                <span className="relative flex w-2 h-2">
+                  <span className="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-accent" />
+                  <span className="relative inline-flex w-2 h-2 rounded-full bg-accent" />
                 </span>
                 Available for work
               </span>
@@ -75,14 +75,14 @@ export default function Hero() {
 
             {/* Role */}
             <motion.div {...fadeUp(0.5)} className="flex items-center gap-3">
-              <div className="h-px w-8 bg-accent" />
-              <p className="font-display text-lg md:text-xl font-medium text-gray-600 dark:text-gray-300">
-                Full Stack Developer
+              <div className="w-8 h-px bg-accent" />
+              <p className="text-lg font-medium text-gray-600 font-display md:text-xl dark:text-gray-300">
+                Software Developer
               </p>
             </motion.div>
 
             {/* Description */}
-            <motion.p {...fadeUp(0.6)} className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg text-balance">
+            <motion.p {...fadeUp(0.6)} className="max-w-lg leading-relaxed text-gray-600 dark:text-gray-400 text-balance">
               Crafting performant, user-centric web experiences with the MERN stack.
               Passionate about clean code, intuitive design, and building products that make a difference.
             </motion.p>
@@ -124,12 +124,12 @@ export default function Hero() {
                   aria-label={label}
                   whileHover={{ scale: 1.15, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-accent dark:hover:text-accent hover:border-accent/40 transition-all duration-300"
+                  className="flex items-center justify-center w-10 h-10 text-gray-500 transition-all duration-300 rounded-full glass dark:text-gray-400 hover:text-accent dark:hover:text-accent hover:border-accent/40"
                 >
                   <Icon size={17} />
                 </motion.a>
               ))}
-              <div className="h-px w-12 bg-gradient-to-r from-gray-300 dark:from-gray-700 to-transparent" />
+              <div className="w-12 h-px bg-gradient-to-r from-gray-300 dark:from-gray-700 to-transparent" />
               <span className="font-mono text-xs text-gray-400">follow me</span>
             </motion.div>
           </div>
@@ -139,30 +139,30 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="hidden lg:flex justify-center items-center relative"
+            className="relative items-center justify-center hidden lg:flex"
           >
             {/* Outer ring */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-              className="absolute w-80 h-80 rounded-full border border-dashed border-accent/20"
+              className="absolute border border-dashed rounded-full w-80 h-80 border-accent/20"
             />
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="absolute w-64 h-64 rounded-full border border-dashed border-accent/10"
+              className="absolute w-64 h-64 border border-dashed rounded-full border-accent/10"
             />
 
             {/* Center Card */}
             <motion.div
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative w-56 h-56 rounded-3xl glass-card flex items-center justify-center glow-accent"
+              className="relative flex items-center justify-center w-56 h-56 rounded-3xl glass-card glow-accent"
             >
-              <div className="text-center space-y-3">
+              <div className="space-y-3 text-center">
                 <div className="text-7xl">👨‍💻</div>
                 <div>
-                  <p className="font-display font-bold text-sm">Kirtan Mungalpara</p>
+                  <p className="text-sm font-bold font-display">Kirtan Mungalpara</p>
                   <p className="font-mono text-xs text-accent">Full Stack Dev</p>
                 </div>
               </div>
@@ -194,7 +194,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400 hover:text-accent transition-colors group"
+        className="absolute flex flex-col items-center gap-2 text-gray-400 transition-colors -translate-x-1/2 bottom-8 left-1/2 hover:text-accent group"
         aria-label="Scroll down"
       >
         <span className="font-mono text-xs">scroll</span>
