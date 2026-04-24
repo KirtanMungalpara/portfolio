@@ -16,8 +16,8 @@ export default {
           light: '#7FFFD4',
         },
         surface: {
-          light: '#F0F4F8',
-          dark: '#0D1117',
+          light: '#F7F9FC',
+          dark: '#080D14',
         },
       },
       animation: {
